@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f0ab3abdc4f0f02533b50aca195e00af",
+    "revision": "edb362c71f7fdfd56379ac92212bdb91",
     "url": "/ant-sample/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ant-sample/static/css/2.7ff19518.chunk.css"
   },
   {
-    "revision": "f2a8b48817a5ed361c3c",
+    "revision": "750227b60d8182343fa9",
     "url": "/ant-sample/static/css/main.6e022196.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ant-sample/static/js/2.17014010.chunk.js"
   },
   {
-    "revision": "f2a8b48817a5ed361c3c",
-    "url": "/ant-sample/static/js/main.195314ad.chunk.js"
+    "revision": "750227b60d8182343fa9",
+    "url": "/ant-sample/static/js/main.51558213.chunk.js"
   },
   {
     "revision": "a6a90281fee492d96120",
