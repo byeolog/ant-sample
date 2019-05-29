@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
+import { Layout, Menu, Breadcrumb, Icon, Empty } from "antd";
 
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import ToastGridBasic from "./grid/toastGrid/ToastGridBasic";
+import BigSchedulerBasic from "./calendar/bigScheduler/BigSchedulerBasic";
+
+import "./App.css";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -14,40 +17,79 @@ const headerMenu = [
 
 const sidebarMenu_Calendar = [
   {
-    title: "calendar1",
-    key: "sub1",
+    title: "BigScheduler",
+    key: "csub1",
     subMenu: [
-      { key: "sub1_1", title: "subCalendar1" },
-      { key: "sub1_2", title: "subCalendar2" }
+      {
+        key: "csub1_1",
+        title: "Basic",
+        parentTitle: "BigScheduler",
+        component: <BigSchedulerBasic />
+      },
+      {
+        key: "csub1_2",
+        title: "subCalendar2",
+        parentTitle: "BigScheduler",
+        component: ""
+      }
     ]
   },
   {
     title: "calendar2",
-    key: "sub2",
+    key: "csub2",
     subMenu: [
-      { key: "sub2_1", title: "subCalendar1" },
-      { key: "sub2_2", title: "subCalendar2" },
-      { key: "sub2_3", title: "subCalendar3" }
+      {
+        key: "csub2_1",
+        title: "subCalendar1",
+        parentTitle: "calendar2",
+        component: ""
+      },
+      {
+        key: "csub2_2",
+        title: "subCalendar2",
+        parentTitle: "calendar2",
+        component: ""
+      },
+      {
+        key: "csub2_3",
+        title: "subCalendar3",
+        parentTitle: "calendar2",
+        component: ""
+      }
     ]
   }
 ];
 
 const sidebarMenu_Grid = [
   {
-    title: "Grid1",
-    key: "sub1",
+    title: "ToastGrid",
+    key: "gsub1",
     subMenu: [
-      { key: "sub1_1", title: "subGrid1" },
-      { key: "sub1_2", title: "subGrid2" }
+      {
+        key: "gsub1_1",
+        title: "Basic",
+        parentTitle: "ToastGrid",
+        component: <ToastGridBasic />
+      }
     ]
   },
   {
     title: "Grid2",
-    key: "sub2",
+    key: "gsub2",
     subMenu: [
-      { key: "sub2_1", title: "subGrid1" },
-      { key: "sub2_2", title: "subGrid2" },
-      { key: "sub2_3", title: "subGrid3" }
+      {
+        key: "gsub2_1",
+        title: "subGrid1",
+        parentTitle: "Grid2",
+        component: ""
+      },
+      {
+        key: "gsub2_2",
+        title: "subGrid2",
+        parentTitle: "Grid2",
+        component: ""
+      },
+      { key: "gsub2_3", title: "subGrid3", parentTitle: "Grid2", component: "" }
     ]
   }
 ];
@@ -55,19 +97,44 @@ const sidebarMenu_Grid = [
 const sidebarMenu_Dashboard = [
   {
     title: "Dashboard1",
-    key: "sub1",
+    key: "dsub1",
     subMenu: [
-      { key: "sub1_1", title: "subDashboard1" },
-      { key: "sub1_2", title: "subDashboard2" }
+      {
+        key: "dsub1_1",
+        title: "subDashboard1",
+        parentTitle: "Dashboard1",
+        component: ""
+      },
+      {
+        key: "dsub1_2",
+        title: "subDashboard2",
+        parentTitle: "Dashboard1",
+        component: ""
+      }
     ]
   },
   {
     title: "Dashboard2",
-    key: "sub2",
+    key: "dsub2",
     subMenu: [
-      { key: "sub2_1", title: "subDashboard1" },
-      { key: "sub2_2", title: "subDashboard2" },
-      { key: "sub2_3", title: "subDashboard3" }
+      {
+        key: "dsub2_1",
+        title: "subDashboard1",
+        parentTitle: "Dashboard2",
+        component: ""
+      },
+      {
+        key: "dsub2_2",
+        title: "subDashboard2",
+        parentTitle: "Dashboard2",
+        component: ""
+      },
+      {
+        key: "dsub2_3",
+        title: "subDashboard3",
+        parentTitle: "Dashboard2",
+        component: ""
+      }
     ]
   }
 ];
@@ -80,24 +147,35 @@ export class App extends Component {
 
     selectedHeaderMenu: "calendar",
     headerMenu: headerMenu,
-    sidebarMenu: sidebarMenu_Calendar
+    sidebarMenu: sidebarMenu_Calendar,
+
+    content: <Empty />
   };
 
   _handlerClickHeader = e => {
     if (e.key === "header1") {
       this.setState({
         selectedHeaderMenu: "calendar",
-        sidebarMenu: sidebarMenu_Calendar
+        sidebarMenu: sidebarMenu_Calendar,
+        Breadcrumb1: "calendar",
+        Breadcrumb2: "",
+        Breadcrumb3: ""
       });
     } else if (e.key === "header2") {
       this.setState({
         selectedHeaderMenu: "grid",
-        sidebarMenu: sidebarMenu_Grid
+        sidebarMenu: sidebarMenu_Grid,
+        Breadcrumb1: "grid",
+        Breadcrumb2: "",
+        Breadcrumb3: ""
       });
     } else if (e.key === "header3") {
       this.setState({
         selectedHeaderMenu: "dashboard",
-        sidebarMenu: sidebarMenu_Dashboard
+        sidebarMenu: sidebarMenu_Dashboard,
+        Breadcrumb1: "dashboard",
+        Breadcrumb2: "",
+        Breadcrumb3: ""
       });
     }
   };
@@ -134,9 +212,24 @@ export class App extends Component {
 
   _renderSubMenuItem = menu => {
     const subMenuItem = menu.subMenu.map(item => {
-      return <Menu.Item key={item.key}>{item.title}</Menu.Item>;
+      return (
+        <Menu.Item
+          key={item.key}
+          onClick={() => this._handlerClickSubMenuItem(item)}
+        >
+          {item.title}
+        </Menu.Item>
+      );
     });
     return subMenuItem;
+  };
+
+  _handlerClickSubMenuItem = item => {
+    this.setState({
+      Breadcrumb2: item.parentTitle,
+      Breadcrumb3: item.title,
+      content: item.component ? item.component : <Empty />
+    });
   };
 
   render() {
@@ -157,8 +250,8 @@ export class App extends Component {
           <Sider width={200} style={{ background: "#fff" }}>
             <Menu
               mode="inline"
-              defaultOpenKeys={["sub1"]}
-              defaultSelectedKeys={["sub1_1"]}
+              defaultOpenKeys={["csub1"]}
+              defaultSelectedKeys={["csub1_1"]}
               style={{ height: "100%", borderRight: 0 }}
             >
               {this._renderSubMenu()}
@@ -175,10 +268,10 @@ export class App extends Component {
                 background: "#fff",
                 padding: 24,
                 margin: 0,
-                minHeight: 780
+                minHeight: 600
               }}
             >
-              Content
+              {this.state.content}
             </Content>
           </Layout>
         </Layout>
