@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@toast-ui/react-grid": "^1.0.0",
+    "ant-design-pro": "^2.3.2",
     "antd": "^3.19.1",
     "moment": "^2.24.0",
+    "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-big-scheduler": "^0.2.7",
     "react-dnd": "^7.4.5",

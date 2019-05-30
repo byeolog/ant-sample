@@ -1,5 +1,19 @@
 import React, { Component } from "react";
-
+import {
+  Drawer,
+  Form,
+  Button,
+  Col,
+  Row,
+  Input,
+  Select,
+  DatePicker,
+  Icon,
+  Modal,
+  Divider,
+  Tag,
+  Table
+} from "antd";
 import AddResourceForm from "./AddResourceForm";
 
 //1. import
@@ -8,12 +22,40 @@ import Scheduler, {
   ViewTypes,
   DATE_FORMAT
 } from "react-big-scheduler";
+
 //include `react-big-scheduler/lib/css/style.css` for styles, link it in html or import it here
 import "react-big-scheduler/lib/css/style.css";
+import "react-big-scheduler/lib/css/antd-globals-hiding-hack.css";
 
 import moment from "moment";
 
 import withDragDropContext from "./withDnDContext";
+
+const { Option } = Select;
+
+const columns = [
+  {
+    title: "Name",
+    dataIndex: "name"
+  },
+  {
+    title: "Age",
+    dataIndex: "age"
+  },
+  {
+    title: "Address",
+    dataIndex: "address"
+  }
+];
+const data = [];
+for (let i = 0; i < 46; i++) {
+  data.push({
+    key: i,
+    name: `Edward King ${i}`,
+    age: 32,
+    address: `London, Park Lane no. ${i}`
+  });
+}
 
 //2. create the view model, put it in the props obj
 let schedulerData = new SchedulerData(
@@ -116,25 +158,46 @@ schedulerData.setEvents(events);
 export class BigScheduler extends Component {
   state = {
     viewModel: schedulerData,
-    modalVisible: false
+    modalVisible: false,
+    visibleDrawer: false,
+    selectedRowKeys: [], // Check here to configure the default column
+    loading: false
   };
 
-  showModal = () => {
-    this.setState({ modalVisible: true });
+  showDrawer = () => {
+    this.setState({
+      visibleDrawer: true
+    });
   };
-  handleCancel = () => {
-    this.setState({ modalVisible: false });
+
+  onCloseDrawer = () => {
+    this.setState({
+      visibleDrawer: false
+    });
   };
+
+  // showModal = () => {
+  //   this.setState({ modalVisible: true });
+  // };
+  // handleCancel = () => {
+  //   this.setState({ modalVisible: false });
+  // };
   handleCreate = () => {
     const form = this.form;
-    form.validateFields((err, values) => {
-      if (err) {
-        return;
-      }
-      this.addResource(values.name);
-      form.resetFields();
-      this.setState({ modalVisible: false });
-    });
+    console.log(form);
+
+    // form.validateFields((err, values) => {
+    //   if (err) {
+    //     return;
+    //   }
+    //   this.addResource(values.name);
+    this.addResource(
+      form.props.children[2].props.children[1].props.children.props.children
+        .props.value
+    );
+
+    this.setState({ visibleDrawer: false });
+    // });
   };
   saveFormRef = form => {
     this.form = form;
@@ -287,22 +350,180 @@ export class BigScheduler extends Component {
     );
   };
 
+  onScrollRight = (schedulerData, schedulerContent, maxScrollLeft) => {
+    if (schedulerData.ViewTypes === ViewTypes.Day) {
+      schedulerData.next();
+      schedulerData.setEvents(events);
+      this.setState({
+        viewModel: schedulerData
+      });
+
+      schedulerContent.scrollLeft = maxScrollLeft - 10;
+    }
+  };
+
+  onScrollLeft = (schedulerData, schedulerContent, maxScrollLeft) => {
+    if (schedulerData.ViewTypes === ViewTypes.Day) {
+      schedulerData.prev();
+      schedulerData.setEvents(events);
+      this.setState({
+        viewModel: schedulerData
+      });
+
+      schedulerContent.scrollLeft = 10;
+    }
+  };
+
+  onScrollTop = (schedulerData, schedulerContent, maxScrollTop) => {
+    console.log("onScrollTop");
+  };
+
+  onScrollBottom = (schedulerData, schedulerContent, maxScrollTop) => {
+    console.log("onScrollBottom");
+  };
+
+  onSelectChange = selectedRowKeys => {
+    console.log("selectedRowKeys changed: ", selectedRowKeys);
+    this.setState({ selectedRowKeys });
+  };
+
   render() {
     //const { schedulerData } = this.props;
+    const { getFieldDecorator } = this.props.form;
+
     const { viewModel } = this.state;
+
+    const { loading, selectedRowKeys } = this.state;
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange
+    };
+    const hasSelected = selectedRowKeys.length > 0;
 
     let leftCustomHeader = (
       <div>
         <span style={{ fontWeight: "bold" }}>
-          <span onClick={this.showModal}>Add a resource</span>
+          <span onClick={this.showDrawer} className="spanButton">
+            배정
+          </span>
         </span>
-        <AddResourceForm
+        {/* <AddResourceForm
           ref={this.saveFormRef}
           visible={this.state.modalVisible}
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
           addResource={this.addResource}
-        />
+        /> */}
+        <Drawer
+          title="인력 배정"
+          width={720}
+          onClose={this.onCloseDrawer}
+          visible={this.state.visibleDrawer}
+        >
+          <Form layout="vertical" hideRequiredMark ref={this.saveFormRef}>
+            <Row gutter={16}>
+              <Col span={24}>
+                <div>
+                  <Tag closable>조성현 과장</Tag>
+                  <Tag closable>황아름 차장</Tag>
+                  <Tag closable>김지혜 대리</Tag>
+                  <Tag closable>박영수 차장</Tag>
+                </div>
+              </Col>
+            </Row>
+            <Divider>임직원 조회</Divider>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item label="Owner">
+                  {getFieldDecorator("owner", {
+                    rules: [
+                      { required: true, message: "Please select an owner" }
+                    ]
+                  })(
+                    <Select placeholder="Please select an owner">
+                      <Option value="xiao">Xiaoxiao Fu</Option>
+                      <Option value="mao">Maomao Zhou</Option>
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label="Name">
+                  {getFieldDecorator("name", {
+                    rules: [
+                      { required: true, message: "Please enter user name" }
+                    ]
+                  })(<Input placeholder="Please enter user name" />)}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item label="DateTime">
+                  {getFieldDecorator("dateTime", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Please choose the dateTime"
+                      }
+                    ]
+                  })(
+                    <DatePicker.RangePicker
+                      style={{ width: "100%" }}
+                      getPopupContainer={trigger => trigger.parentNode}
+                    />
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>{/* <Button>검색</Button> */}</Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={24}>
+                <div>
+                  <div style={{ marginBottom: 16 }}>
+                    <Button
+                      type="primary"
+                      onClick={this.start}
+                      disabled={!hasSelected}
+                      loading={loading}
+                    >
+                      Reload
+                    </Button>
+                    <span style={{ marginLeft: 8 }}>
+                      {hasSelected
+                        ? `Selected ${selectedRowKeys.length} items`
+                        : ""}
+                    </span>
+                  </div>
+                  <Table
+                    rowSelection={rowSelection}
+                    columns={columns}
+                    dataSource={data}
+                  />
+                </div>
+              </Col>
+            </Row>
+          </Form>
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+              width: "100%",
+              borderTop: "1px solid #e9e9e9",
+              padding: "10px 16px",
+              background: "#fff",
+              textAlign: "right"
+            }}
+          >
+            <Button onClick={this.onCloseAccount} style={{ marginRight: 8 }}>
+              Cancel
+            </Button>
+            <Button onClick={this.handleCreate} type="primary">
+              Submit
+            </Button>
+          </div>
+        </Drawer>
       </div>
     );
 
@@ -324,9 +545,14 @@ export class BigScheduler extends Component {
         viewEvent2Text="반려"
         viewEventClick={this.ops1}
         viewEvent2Click={this.ops2}
+        onScrollLeft={this.onScrollLeft}
+        onScrollRight={this.onScrollRight}
+        onScrollTop={this.onScrollTop}
+        onScrollBottom={this.onScrollBottom}
       />
     );
   }
 }
 
-export default withDragDropContext(BigScheduler);
+export default Form.create()(withDragDropContext(BigScheduler));
+// export default withDragDropContext(BigScheduler);

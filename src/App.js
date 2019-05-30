@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb, Icon, Empty } from "antd";
 
 import ToastGridBasic from "./grid/toastGrid/ToastGridBasic";
 import BigSchedulerBasic from "./calendar/bigScheduler/BigSchedulerBasic";
+import DashboardChartBasic from "./dashboard/chart/Basic";
 
 import "./App.css";
 
@@ -96,14 +97,14 @@ const sidebarMenu_Grid = [
 
 const sidebarMenu_Dashboard = [
   {
-    title: "Dashboard1",
+    title: "Chart",
     key: "dsub1",
     subMenu: [
       {
         key: "dsub1_1",
-        title: "subDashboard1",
-        parentTitle: "Dashboard1",
-        component: ""
+        title: "Basic",
+        parentTitle: "Chart",
+        component: <DashboardChartBasic />
       },
       {
         key: "dsub1_2",
@@ -149,7 +150,7 @@ export class App extends Component {
     headerMenu: headerMenu,
     sidebarMenu: sidebarMenu_Calendar,
 
-    content: <Empty />
+    content: <BigSchedulerBasic />
   };
 
   _handlerClickHeader = e => {
@@ -158,24 +159,27 @@ export class App extends Component {
         selectedHeaderMenu: "calendar",
         sidebarMenu: sidebarMenu_Calendar,
         Breadcrumb1: "calendar",
-        Breadcrumb2: "",
-        Breadcrumb3: ""
+        Breadcrumb2: "BigScheduler",
+        Breadcrumb3: "Basic",
+        content: <BigSchedulerBasic />
       });
     } else if (e.key === "header2") {
       this.setState({
         selectedHeaderMenu: "grid",
         sidebarMenu: sidebarMenu_Grid,
         Breadcrumb1: "grid",
-        Breadcrumb2: "",
-        Breadcrumb3: ""
+        Breadcrumb2: "ToastGrid",
+        Breadcrumb3: "Basic",
+        content: <ToastGridBasic />
       });
     } else if (e.key === "header3") {
       this.setState({
         selectedHeaderMenu: "dashboard",
         sidebarMenu: sidebarMenu_Dashboard,
         Breadcrumb1: "dashboard",
-        Breadcrumb2: "",
-        Breadcrumb3: ""
+        Breadcrumb2: "Chart",
+        Breadcrumb3: "Basic",
+        content: <DashboardChartBasic />
       });
     }
   };
@@ -234,48 +238,52 @@ export class App extends Component {
 
   render() {
     return (
-      <Layout>
-        <Header className="header">
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={["header1"]}
-            style={{ lineHeight: "64px" }}
-          >
-            {this._renderHeaderMenu()}
-          </Menu>
-        </Header>
+      <div>
         <Layout>
-          <Sider width={200} style={{ background: "#fff" }}>
+          <Header className="header">
+            <div className="logo">Metanet</div>
             <Menu
-              mode="inline"
-              defaultOpenKeys={["csub1"]}
-              defaultSelectedKeys={["csub1_1"]}
-              style={{ height: "100%", borderRight: 0 }}
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={["header1"]}
+              style={{ lineHeight: "64px" }}
             >
-              {this._renderSubMenu()}
+              {this._renderHeaderMenu()}
             </Menu>
-          </Sider>
-          <Layout style={{ padding: "0 24px 24px" }}>
-            <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>{this.state.Breadcrumb1}</Breadcrumb.Item>
-              <Breadcrumb.Item>{this.state.Breadcrumb2}</Breadcrumb.Item>
-              <Breadcrumb.Item>{this.state.Breadcrumb3}</Breadcrumb.Item>
-            </Breadcrumb>
-            <Content
-              style={{
-                background: "#fff",
-                padding: 24,
-                margin: 0,
-                minHeight: 600
-              }}
-            >
-              {this.state.content}
-            </Content>
+          </Header>
+          <Layout>
+            <Sider width={200} style={{ background: "#fff" }}>
+              <Menu
+                mode="inline"
+                defaultOpenKeys={["csub1"]}
+                defaultSelectedKeys={["csub1_1"]}
+                style={{ height: "100%", borderRight: 0 }}
+              >
+                {this._renderSubMenu()}
+              </Menu>
+            </Sider>
+            <Layout style={{ padding: "0 24px 24px" }}>
+              <Breadcrumb style={{ margin: "16px 0" }}>
+                <Breadcrumb.Item>{this.state.Breadcrumb1}</Breadcrumb.Item>
+                <Breadcrumb.Item>{this.state.Breadcrumb2}</Breadcrumb.Item>
+                <Breadcrumb.Item>{this.state.Breadcrumb3}</Breadcrumb.Item>
+              </Breadcrumb>
+              <Content
+                style={{
+                  background: "#fff",
+                  padding: 24,
+                  margin: 0,
+                  minHeight: 600
+                }}
+              >
+                {this.state.content}
+              </Content>
+            </Layout>
           </Layout>
         </Layout>
-      </Layout>
+
+        {/* <BigSchedulerBasic /> */}
+      </div>
     );
   }
 }
