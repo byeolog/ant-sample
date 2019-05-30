@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ant-sample/static/css/main.6e022196.chunk.css",
-    "main.js": "/ant-sample/static/js/main.4c9f6447.chunk.js",
-    "main.js.map": "/ant-sample/static/js/main.4c9f6447.chunk.js.map",
+    "main.js": "/ant-sample/static/js/main.940e294d.chunk.js",
+    "main.js.map": "/ant-sample/static/js/main.940e294d.chunk.js.map",
     "runtime~main.js": "/ant-sample/static/js/runtime~main.cc7ac6f1.js",
     "runtime~main.js.map": "/ant-sample/static/js/runtime~main.cc7ac6f1.js.map",
     "static/css/2.8dac8ee0.chunk.css": "/ant-sample/static/css/2.8dac8ee0.chunk.css",
-    "static/js/2.f2af6129.chunk.js": "/ant-sample/static/js/2.f2af6129.chunk.js",
-    "static/js/2.f2af6129.chunk.js.map": "/ant-sample/static/js/2.f2af6129.chunk.js.map",
+    "static/js/2.ba591763.chunk.js": "/ant-sample/static/js/2.ba591763.chunk.js",
+    "static/js/2.ba591763.chunk.js.map": "/ant-sample/static/js/2.ba591763.chunk.js.map",
     "index.html": "/ant-sample/index.html",
-    "precache-manifest.7507d72e9984b01be32d168fac267d12.js": "/ant-sample/precache-manifest.7507d72e9984b01be32d168fac267d12.js",
+    "precache-manifest.78a905c199a48ef22ee6c2d35425e605.js": "/ant-sample/precache-manifest.78a905c199a48ef22ee6c2d35425e605.js",
     "service-worker.js": "/ant-sample/service-worker.js",
     "static/css/2.8dac8ee0.chunk.css.map": "/ant-sample/static/css/2.8dac8ee0.chunk.css.map",
     "static/css/main.6e022196.chunk.css.map": "/ant-sample/static/css/main.6e022196.chunk.css.map"
