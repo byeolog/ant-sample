@@ -41,9 +41,22 @@
   /* background: rgba(255, 255, 255, 0.2); */
   margin: 16px 28px 16px 0;
   float: left;
+
   color: #ffffff;
 }
 
 .spanButton {
   cursor: pointer;
+}
+
+.siderTriggerDiv {
+  padding: 15px;
+}
+
+.siderTriggerDivRight {
+  text-align: center;
+}
+
+.siderTriggerDivLeft {
+  text-align: right;
 }

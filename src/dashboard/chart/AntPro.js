@@ -31,38 +31,40 @@ export default class Basic extends Component {
     return (
       <div>
         <Row>
-          <Col span={24}>
-            <ChartCard
-              title="1번 차트"
-              total={numeral(8846).format("0,0")}
-              contentHeight={134}
-            >
-              <NumberInfo
-                subTitle={<span>sub title</span>}
-                total={numeral(12321).format("0,0")}
-                status="up"
-                subTotal={17.1}
-              />
-              <MiniArea line height={45} data={visitData} />
-            </ChartCard>
-          </Col>
-          <Col span={24} style={{ marginTop: 24 }}>
-            <ChartCard
-              title="2번 차트"
-              action={
-                <Tooltip title="tooltip">
-                  <Icon type="info-circle-o" />
-                </Tooltip>
-              }
-              total={numeral(8846).format("0,0")}
-              footer={
-                <Field label="바닥글" value={numeral(1234).format("0,0")} />
-              }
-              contentHeight={46}
-            >
-              <MiniBar height={46} data={visitData} />
-            </ChartCard>
-          </Col>
+          <Row gutter={16}>
+            <Col span={12}>
+              <ChartCard
+                title="1번 차트"
+                total={numeral(8846).format("0,0")}
+                contentHeight={134}
+              >
+                <NumberInfo
+                  subTitle={<span>sub title</span>}
+                  total={numeral(12321).format("0,0")}
+                  status="up"
+                  subTotal={17.1}
+                />
+                <MiniArea line height={45} data={visitData} />
+              </ChartCard>
+            </Col>
+            <Col span={12} style={{ marginTop: 24 }}>
+              <ChartCard
+                title="2번 차트"
+                action={
+                  <Tooltip title="tooltip">
+                    <Icon type="info-circle-o" />
+                  </Tooltip>
+                }
+                total={numeral(8846).format("0,0")}
+                footer={
+                  <Field label="바닥글" value={numeral(1234).format("0,0")} />
+                }
+                contentHeight={46}
+              >
+                <MiniBar height={46} data={visitData} />
+              </ChartCard>
+            </Col>
+          </Row>
           <Col span={24} style={{ marginTop: 24 }}>
             <ChartCard
               title="3번 차트"
