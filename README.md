@@ -1,6 +1,6 @@
 # 관련 라이브러리
 
-###React 기반
+### React 기반
 
 [Create React App](https://github.com/facebook/create-react-app)<br/>
 `npx create-react-app my-app`
@@ -8,7 +8,7 @@
 react-router-dom<br/>
 `yarn add react-router-dom`
 
-###Layout 기반
+### Layout 기반
 
 [Ant Design](https://ant.design/)<br/>
 `yarn add antd`
@@ -16,7 +16,7 @@ react-router-dom<br/>
 **최상위 CSS 파일에 추가**<br/>
 @import "~antd/dist/antd.css";
 
-###Resource Scheduler
+### Resource Scheduler
 
 [React Big Scheduler](https://stephenchou1017.github.io/scheduler/#/)<br/>
 `yarn add react-big-scheduler`
@@ -39,17 +39,17 @@ react-router-dom<br/>
 react-dnd-html5-backend<br/>
 `yarn add react-dnd-html5-backend`
 
-###Grid? Table? Cell?...
+### Grid? Table? Cell?...
 
 [Toast UI Grid](https://ui.toast.com/tui-grid) [(github)](https://github.com/nhn/toast-ui.react-grid)<br/>
 `yarn add @toast-ui/react-grid`
 
-###Chart
+### Chart
 
 [Toast UI Chart](https://ui.toast.com/tui-chart) [(github)](https://github.com/nhn/toast-ui.react-chart)<br/>
 `yarn add @toast-ui/react-chart`
 
-###date library
+### date library
 
 [Moment](http://momentjs.com/docs/)<br/>
 `yarn add moment`
