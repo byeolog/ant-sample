@@ -60,3 +60,28 @@
 .siderTriggerDivLeft {
   text-align: right;
 }
+
+.dayDiv {
+  /* float: left; */
+  padding: 5px;
+  display: inline;
+  font-size: 20px;
+}
+
+.dayWrapperDiv {
+  height: 40px;
+  width: 100%;
+  overflow: auto;
+}
+.dayWrapperDiv::-webkit-scrollbar {
+  display: none;
+}
+
+.day2WrapperDiv {
+  height: 700px;
+  width: 100%;
+  overflow: auto;
+}
+.day2WrapperDiv::-webkit-scrollbar {
+  display: none;
+}

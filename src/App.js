@@ -6,8 +6,11 @@ import ToastGridBasic from "./grid/toastGrid/ToastGridBasic";
 import BigSchedulerBasic from "./calendar/bigScheduler/BigSchedulerBasic";
 import DashboardChartAntpro from "./dashboard/chart/AntPro";
 import ToastChart from "./dashboard/chart/ToastChart";
+import OutlookLayout from "./calendar/mobile/OutlookLayout";
 
 import "./App.css";
+
+import logo from "./img/Metanet_White.png";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -28,7 +31,7 @@ const sidebarMenu_Calendar = [
         title: "Basic",
         parentTitle: "BigScheduler",
         component: <BigSchedulerBasic />,
-        routerPath: "/calendar/bigscheduler"
+        routerPath: "/calendar/bigscheduler/basic"
       },
       {
         key: "csub1_2",
@@ -40,15 +43,15 @@ const sidebarMenu_Calendar = [
     ]
   },
   {
-    title: "calendar2",
+    title: "Mobile",
     key: "csub2",
     subMenu: [
       {
         key: "csub2_1",
-        title: "subCalendar1",
-        parentTitle: "calendar2",
+        title: "OutlookLayout",
+        parentTitle: "Mobile",
         component: "",
-        routerPath: "/"
+        routerPath: "/calendar/mobile/outlooklayout"
       },
       {
         key: "csub2_2",
@@ -298,7 +301,17 @@ export class App extends Component {
         <div>
           <Layout>
             <Header className="header">
-              <div className="logo">Metanet</div>
+              <div className="logo">
+                <img
+                  alt="logo"
+                  src={logo}
+                  style={{
+                    width: "200px",
+                    marginTop: "-40px",
+                    marginLeft: "-50px"
+                  }}
+                />
+              </div>
               <Menu
                 theme="dark"
                 mode="horizontal"
@@ -343,7 +356,7 @@ export class App extends Component {
                   {/* {this.state.content} */}
                   <Route exact path="/" component={Empty} />
                   <Route
-                    path="/calendar/bigscheduler"
+                    path="/calendar/bigscheduler/basic"
                     component={BigSchedulerBasic}
                   />
                   <Route path="/grid/toastgrid" component={ToastGridBasic} />
@@ -354,6 +367,10 @@ export class App extends Component {
                   <Route
                     path="/dashboard/chart/toastchart"
                     component={ToastChart}
+                  />
+                  <Route
+                    path="/calendar/mobile/outlooklayout"
+                    component={OutlookLayout}
                   />
                 </Content>
               </Layout>
