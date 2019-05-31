@@ -1,52 +1,55 @@
-## 관련 라이브러리
+# 관련 라이브러리
 
-**React 기반**
+###React 기반
 
-[Create React App](https://github.com/facebook/create-react-app)
+[Create React App](https://github.com/facebook/create-react-app)<br/>
 `npx create-react-app my-app`
 
-react-router-dom
+react-router-dom<br/>
 `yarn add react-router-dom`
 
-**Layout 기반**
+###Layout 기반
 
-[Ant Design](https://ant.design/)
+[Ant Design](https://ant.design/)<br/>
 `yarn add antd`
 
-최상위 CSS 파일에 추가
+**최상위 CSS 파일에 추가**<br/>
 @import "~antd/dist/antd.css";
 
-**Resource Scheduler**
+###Resource Scheduler
 
-[React Big Scheduler](https://stephenchou1017.github.io/scheduler/#/)
+[React Big Scheduler](https://stephenchou1017.github.io/scheduler/#/)<br/>
 `yarn add react-big-scheduler`
 
-SchedulerData.js 의 아래 부분 수정으로 너비 이슈 해소 가능
-{
-key: 'getSchedulerWidth',
-value: function getSchedulerWidth() {
-var baseWidth = this.documentWidth - this.config.besidesWidth - `300` > 0 ? this.documentWidth - this.config.besidesWidth - `300` : 0;
-return this.isSchedulerResponsive() ? parseInt(baseWidth \* Number(this.config.schedulerWidth.slice(0, -1)) / 100) : this.config.schedulerWidth;
-}
-}
+**SchedulerData.js 의 아래 부분 수정으로 너비 이슈 해소 가능**<br/>
 
-Drag & Drop을 위해 추가
-[react-dnd](http://react-dnd.github.io/react-dnd/about)
-yarn add react-dnd
-react-dnd-html5-backend
-yarn add react-dnd-html5-backend
+```javascript
+    {
+        key: 'getSchedulerWidth',
+        value: function getSchedulerWidth() {
+            var baseWidth = this.documentWidth - this.config.besidesWidth - `300` > 0 ? this.documentWidth - this.config.besidesWidth - `300` : 0;
+            return this.isSchedulerResponsive() ? parseInt(baseWidth \* Number(this.config.schedulerWidth.slice(0, -1)) / 100) : this.config.schedulerWidth;
+        }
+    }
+```
 
-**Grid? Table? Cell?...**
+**Drag & Drop을 위해 추가**<br/>
+[react-dnd](http://react-dnd.github.io/react-dnd/about)<br/>
+`yarn add react-dnd`<br/>
+react-dnd-html5-backend<br/>
+`yarn add react-dnd-html5-backend`
 
-[Toast UI Grid](https://ui.toast.com/tui-grid) [github](https://github.com/nhn/toast-ui.react-grid)
+###Grid? Table? Cell?...
+
+[Toast UI Grid](https://ui.toast.com/tui-grid) [(github)](https://github.com/nhn/toast-ui.react-grid)<br/>
 `yarn add @toast-ui/react-grid`
 
-**Chart**
+###Chart
 
-[Toast UI Chart](https://ui.toast.com/tui-chart) [github](https://github.com/nhn/toast-ui.react-chart)
+[Toast UI Chart](https://ui.toast.com/tui-chart) [(github)](https://github.com/nhn/toast-ui.react-chart)<br/>
 `yarn add @toast-ui/react-chart`
 
-**date library**
+###date library
 
-[Moment](http://momentjs.com/docs/)
+[Moment](http://momentjs.com/docs/)<br/>
 `yarn add moment`
