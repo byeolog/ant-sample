@@ -57,9 +57,9 @@ react-router-dom<br/>
 [Moment](http://momentjs.com/docs/)<br/>
 `yarn add moment`
 
-## Github Pages를 사용하기 위해
+### Github Pages를 사용하기 위해
 
-gh-pages [(create-react-app Docs)](https://facebook.github.io/create-react-app/docs/deployment)
+gh-pages [(create-react-app Docs)](https://facebook.github.io/create-react-app/docs/deployment)<br/>
 `yarn add gh-pages`
 
 > **package.json 에 추가**

@@ -297,7 +297,7 @@ export class App extends Component {
 
   render() {
     return (
-      <HashRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter basename="/">
         <div>
           <Layout>
             <Header className="header">
