@@ -14,30 +14,33 @@ react-router-dom<br/>
 `yarn add antd`
 
 **최상위 CSS 파일에 추가**<br/>
+
+```css
 @import "~antd/dist/antd.css";
+```
 
 ### Resource Scheduler
 
 [React Big Scheduler](https://stephenchou1017.github.io/scheduler/#/)<br/>
 `yarn add react-big-scheduler`
 
-**SchedulerData.js 의 아래 부분 수정으로 너비 이슈 해소 가능**<br/>
+> **SchedulerData.js 의 아래 부분 수정으로 너비 이슈 해소 가능**<br/>
 
 ```javascript
     {
         key: 'getSchedulerWidth',
         value: function getSchedulerWidth() {
-            var baseWidth = this.documentWidth - this.config.besidesWidth - `300` > 0 ? this.documentWidth - this.config.besidesWidth - `300` : 0;
+            var baseWidth = this.documentWidth - this.config.besidesWidth - 300 > 0 ? this.documentWidth - this.config.besidesWidth - 300 : 0;
             return this.isSchedulerResponsive() ? parseInt(baseWidth \* Number(this.config.schedulerWidth.slice(0, -1)) / 100) : this.config.schedulerWidth;
         }
     }
 ```
 
-**Drag & Drop을 위해 추가**<br/>
-[react-dnd](http://react-dnd.github.io/react-dnd/about)<br/>
-`yarn add react-dnd`<br/>
-react-dnd-html5-backend<br/>
-`yarn add react-dnd-html5-backend`
+> **Drag & Drop을 위해 추가**<br/>
+>
+> > [react-dnd](http://react-dnd.github.io/react-dnd/about)<br/> >>`yarn add react-dnd`<br/>
+> >
+> > react-dnd-html5-backend<br/> >>`yarn add react-dnd-html5-backend`
 
 ### Grid? Table? Cell?...
 
