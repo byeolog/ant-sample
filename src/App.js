@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Menu, Breadcrumb, Icon, Empty } from "antd";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter, Router, Route, Link } from "react-router-dom";
 
 import ToastGridBasic from "./grid/toastGrid/ToastGridBasic";
 import BigSchedulerBasic from "./calendar/bigScheduler/BigSchedulerBasic";
@@ -297,7 +297,7 @@ export class App extends Component {
 
   render() {
     return (
-      <Router>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         <div>
           <Layout>
             <Header className="header">
@@ -379,7 +379,7 @@ export class App extends Component {
 
           {/* <BigSchedulerBasic /> */}
         </div>
-      </Router>
+      </HashRouter>
     );
   }
 }
