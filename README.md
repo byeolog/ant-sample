@@ -13,7 +13,7 @@ react-router-dom<br/>
 [Ant Design](https://ant.design/)<br/>
 `yarn add antd`
 
-**최상위 CSS 파일에 추가**<br/>
+> **최상위 CSS 파일에 추가**<br/>
 
 ```css
 @import "~antd/dist/antd.css";
@@ -38,9 +38,9 @@ react-router-dom<br/>
 
 > **Drag & Drop을 위해 추가**<br/>
 >
-> > [react-dnd](http://react-dnd.github.io/react-dnd/about)<br/> >>`yarn add react-dnd`<br/>
+> > [react-dnd](http://react-dnd.github.io/react-dnd/about)<br/> `yarn add react-dnd`<br/>
 > >
-> > react-dnd-html5-backend<br/> >>`yarn add react-dnd-html5-backend`
+> > react-dnd-html5-backend<br/> `yarn add react-dnd-html5-backend`
 
 ### Grid? Table? Cell?...
 
