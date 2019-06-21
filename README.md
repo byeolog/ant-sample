@@ -1,3 +1,5 @@
+package Manager : yarn<br>
+
 # 관련 라이브러리
 
 ### React 기반
@@ -59,7 +61,7 @@ react-router-dom<br/>
 
 ### Github Pages를 사용하기 위해
 
-gh-pages [(create-react-app Docs)](https://facebook.github.io/create-react-app/docs/deployment)<br/>
+[gh-pages](https://pages.github.com/) [(create-react-app Docs)](https://facebook.github.io/create-react-app/docs/deployment)<br/>
 `yarn add gh-pages`
 
 > **package.json 에 추가**
